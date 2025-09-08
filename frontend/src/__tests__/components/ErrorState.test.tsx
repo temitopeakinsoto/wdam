@@ -99,7 +99,7 @@ describe("ErrorState Component", () => {
 
     const container = screen.getByText("Test Error Title").closest("div");
     expect(container?.parentElement).toHaveClass(
-      "min-h-screen",
+      "min-h-[400px]",
       "flex",
       "justify-center",
       "items-center"
@@ -110,6 +110,6 @@ describe("ErrorState Component", () => {
     render(<ErrorState {...defaultProps} />);
 
     const title = screen.getByText("Test Error Title");
-    expect(title).toHaveClass("text-xl", "font-medium", "text-red-600", "mb-2");
+    expect(title).toHaveClass("text-xl", "font-semibold", "text-red-600", "mb-3");
   });
 });

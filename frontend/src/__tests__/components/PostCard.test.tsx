@@ -9,6 +9,7 @@ describe("PostCard Component", () => {
     title: "Test Post Title",
     body: "This is a test post body content.",
     user_id: "test-user-id",
+    created_at: "2023-01-01T00:00:00Z",
   };
 
   it("should render post title and body", () => {
@@ -70,10 +71,12 @@ describe("PostCard Component", () => {
       "bg-white",
       "rounded-lg",
       "shadow-sm",
-      "p-4",
+      "border",
+      "border-gray-200",
+      "p-6",
       "hover:shadow-md",
       "transition-shadow",
-      "h-80",
+      "min-h-[320px]",
       "flex",
       "flex-col"
     );
@@ -110,14 +113,14 @@ describe("NewPostCard Component", () => {
     const onClick = jest.fn();
     render(<NewPostCard onClick={onClick} />);
 
-    expect(screen.getByText("New Post")).toBeInTheDocument();
+    expect(screen.getByText("Create New Post")).toBeInTheDocument();
   });
 
   it("should call onClick when clicked", () => {
     const onClick = jest.fn();
     render(<NewPostCard onClick={onClick} />);
 
-    const button = screen.getByText("New Post");
+    const button = screen.getByText("Create New Post");
     fireEvent.click(button);
 
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -129,24 +132,21 @@ describe("NewPostCard Component", () => {
 
     const svg = container.querySelector("svg");
     expect(svg).toBeInTheDocument();
-    expect(svg).toHaveClass("w-8", "h-8", "mb-3");
+    expect(svg).toHaveClass("w-10", "h-10", "mb-4");
   });
 
   it("should have correct styling for button", () => {
     const onClick = jest.fn();
     render(<NewPostCard onClick={onClick} />);
 
-    const button = screen.getByText("New Post").closest("button");
+    const button = screen.getByText("Create New Post").closest("button");
     expect(button).toHaveClass(
       "w-full",
-      "h-72",
+      "h-full",
       "flex",
       "flex-col",
       "items-center",
-      "justify-center",
-      "text-gray-500",
-      "hover:text-gray-600",
-      "transition-colors"
+      "justify-center"
     );
   });
 

@@ -84,7 +84,7 @@ describe("EmptyState Component", () => {
 
     const container = screen.getByText("Test Empty State Title").closest("div");
     expect(container?.parentElement).toHaveClass(
-      "min-h-screen",
+      "min-h-[400px]",
       "flex",
       "justify-center",
       "items-center"
@@ -97,9 +97,9 @@ describe("EmptyState Component", () => {
     const title = screen.getByText("Test Empty State Title");
     expect(title).toHaveClass(
       "text-xl",
-      "font-medium",
+      "font-semibold",
       "text-gray-900",
-      "mb-2"
+      "mb-3"
     );
   });
 });

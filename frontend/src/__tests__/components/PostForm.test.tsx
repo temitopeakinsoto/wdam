@@ -197,16 +197,15 @@ describe("PostForm Component", () => {
     const cancelButton = screen.getByRole("button", { name: "Cancel" });
 
     expect(publishButton).toHaveClass(
-      "bg-gray-900",
+      "bg-black",
       "text-white",
-      "py-2",
-      "px-4"
+      "hover:bg-gray-800"
     );
     expect(cancelButton).toHaveClass(
+      "border",
+      "border-gray-300",
       "bg-white",
-      "text-gray-700",
-      "py-2",
-      "px-4"
+      "text-gray-700"
     );
   });
 
