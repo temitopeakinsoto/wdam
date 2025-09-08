@@ -7,3 +7,5 @@ export { UserCard } from './UserCard';
 export { Pagination } from './Pagination';
 export { PostForm } from './PostForm';
 export { default as Loader } from './Loader';
+export { Button } from './Button';
+export { ConfirmationModal } from './ConfirmationModal';

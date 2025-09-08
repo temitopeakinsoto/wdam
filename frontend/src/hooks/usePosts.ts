@@ -57,8 +57,14 @@ export function useCreatePost() {
 
       return response.json();
     },
-    onSuccess: (_, variables) => {
-      // Invalidate and refetch posts for the specific user
+    onSuccess: (newPost, variables) => {
+      // Update the cache with the new post at the beginning
+      queryClient.setQueryData(['posts', variables.user_id], (oldPosts: any) => {
+        if (!oldPosts) return [newPost];
+        return [newPost, ...oldPosts];
+      });
+      
+      // Also invalidate to ensure fresh data
       queryClient.invalidateQueries({ queryKey: ['posts', variables.user_id] });
       queryClient.invalidateQueries({ queryKey: ['posts'] });
     },

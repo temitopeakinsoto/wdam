@@ -1,5 +1,6 @@
 import React from "react";
 import { getPaginationItems } from "@/utils/pagination";
+import { Button } from "./Button";
 
 interface PaginationProps {
   currentPage: number;
@@ -31,15 +32,21 @@ export function Pagination({
   if (totalItems === 0) return null;
 
   return (
-    <div className="flex items-center justify-end mt-6">
+    <div className="flex items-center justify-between mt-8">
+      <div className="text-sm text-gray-700">
+        Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of{" "}
+        {totalItems} results
+      </div>
+
       <div className="flex items-center space-x-2">
-        <button
+        <Button
+          variant="outline"
+          size="sm"
           onClick={goToPrevious}
-          disabled={currentPage === 1}
-          className="px-3 py-2 text-sm font-medium text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={currentPage === 1 || isLoading}
         >
           ← Previous
-        </button>
+        </Button>
 
         <div className="flex space-x-1">
           {getPaginationItems(currentPage, totalPages).map((item, index) => {
@@ -47,7 +54,7 @@ export function Pagination({
               return (
                 <span
                   key={`ellipsis-${index}`}
-                  className="px-3 py-2 text-xs font-medium text-gray-500"
+                  className="px-3 py-2 text-sm font-medium text-gray-500"
                 >
                   ...
                 </span>
@@ -56,28 +63,30 @@ export function Pagination({
 
             const pageNumber = item as number;
             return (
-              <button
+              <Button
                 key={pageNumber}
+                variant={currentPage === pageNumber ? "default" : "ghost"}
+                size="sm"
                 onClick={() => onPageChange(pageNumber)}
-                className={`px-3 py-2 text-xs font-medium rounded-md ${
-                  currentPage === pageNumber
-                    ? "bg-purple-100 text-purple-500"
-                    : "text-gray-700 hover:bg-gray-50"
-                }`}
+                disabled={isLoading}
+                className={
+                  currentPage === pageNumber ? "bg-gray-900 text-white" : ""
+                }
               >
                 {pageNumber}
-              </button>
+              </Button>
             );
           })}
         </div>
 
-        <button
+        <Button
+          variant="outline"
+          size="sm"
           onClick={goToNext}
-          disabled={currentPage === totalPages}
-          className="px-3 py-2 text-sm font-medium text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={currentPage === totalPages || isLoading}
         >
           Next →
-        </button>
+        </Button>
       </div>
     </div>
   );

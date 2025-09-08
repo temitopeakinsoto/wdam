@@ -23,6 +23,7 @@ export interface Post {
   title: string;
   body: string;
   user_id: string;
+  created_at: string;
 }
 
 export interface NewPost {
